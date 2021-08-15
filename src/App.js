@@ -26,13 +26,13 @@ class App extends Component {
     super(props);
 
     this.state = {
-      firstName: null,
-      lastName: null,
+      Brand: null,
+      Model: null,
       email: null,
       password: null,
       formErrors: {
-        firstName: "",
-        lastName: "",
+        Brand: "",
+        Model: "",
         email: "",
         password: ""
       }
@@ -45,8 +45,8 @@ class App extends Component {
     if (formValid(this.state)) {
       console.log(`
         --SUBMITTING--
-        First Name: ${this.state.firstName}
-        Last Name: ${this.state.lastName}
+        Brand: ${this.state.Brand}
+        Model: ${this.state.Model}
         Email: ${this.state.email}
         Password: ${this.state.password}
       `);
@@ -61,12 +61,12 @@ class App extends Component {
     let formErrors = { ...this.state.formErrors };
 
     switch (name) {
-      case "firstName":
-        formErrors.firstName =
+      case "Brand":
+        formErrors.Brand =
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
-      case "lastName":
-        formErrors.lastName =
+      case "Model":
+        formErrors.Model =
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
       case "email":
@@ -91,34 +91,34 @@ class App extends Component {
     return (
       <div className="wrapper">
         <div className="form-wrapper">
-          <h1>Create Account</h1>
+          <h1>New Tractor Form</h1>
           <form onSubmit={this.handleSubmit} noValidate>
-            <div className="firstName">
-              <label htmlFor="firstName">First Name</label>
+            <div className="Brand">
+              <label htmlFor="Brand">Brand</label>
               <input
-                className={formErrors.firstName.length > 0 ? "error" : null}
-                placeholder="First Name"
+                className={formErrors.Brand.length > 0 ? "error" : null}
+                placeholder="Brand"
                 type="text"
-                name="firstName"
+                name="Brand"
                 noValidate
                 onChange={this.handleChange}
               />
-              {formErrors.firstName.length > 0 && (
-                <span className="errorMessage">{formErrors.firstName}</span>
+              {formErrors.Brand.length > 0 && (
+                <span className="errorMessage">{formErrors.Brand}</span>
               )}
             </div>
-            <div className="lastName">
-              <label htmlFor="lastName">Last Name</label>
+            <div className="Model">
+              <label htmlFor="Model">Model</label>
               <input
-                className={formErrors.lastName.length > 0 ? "error" : null}
-                placeholder="Last Name"
+                className={formErrors.Model.length > 0 ? "error" : null}
+                placeholder="Model"
                 type="text"
-                name="lastName"
+                name="Model"
                 noValidate
                 onChange={this.handleChange}
               />
-              {formErrors.lastName.length > 0 && (
-                <span className="errorMessage">{formErrors.lastName}</span>
+              {formErrors.Model.length > 0 && (
+                <span className="errorMessage">{formErrors.Model}</span>
               )}
             </div>
             <div className="email">
