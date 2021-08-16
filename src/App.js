@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 
-const emailRegex = RegExp(
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-);
+
 
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
@@ -28,13 +26,19 @@ class App extends Component {
     this.state = {
       Brand: null,
       Model: null,
-      email: null,
-      password: null,
+      Variant: null,
+      Hp: null,
+      Rpm: null,
+      VehicleOverview: null,
+      VehicleFeatures: null,
       formErrors: {
         Brand: "",
         Model: "",
-        email: "",
-        password: ""
+        Variant: "",
+        Hp: "",
+        Rpm: "",
+        VehicleOverview: "",
+        VehicleFeatures: ""
       }
     };
   }
@@ -46,9 +50,11 @@ class App extends Component {
       console.log(`
         --SUBMITTING--
         Brand: ${this.state.Brand}
-        Model: ${this.state.Model}
-        Email: ${this.state.email}
-        Password: ${this.state.password}
+        Variant: ${this.state.Brand}
+        Hp: ${this.state.Brand}
+        Rpm: ${this.state.Model}
+        Vehicle-Overview: ${this.state.Model}
+        VehicleFeatures: ${this.state.VehicleFeatures}
       `);
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
@@ -69,15 +75,14 @@ class App extends Component {
         formErrors.Model =
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
-      case "email":
-        formErrors.email = emailRegex.test(value)
-          ? ""
-          : "invalid email address";
+      case "VehicleFeatures":
+        formErrors.VehicleFeatures =
+          value.length < 100 ? "minimum 100 characaters required" : "";
         break;
-      case "password":
-        formErrors.password =
-          value.length < 6 ? "minimum 6 characaters required" : "";
-        break;
+        case "VehicleOverview":
+          formErrors.VehicleFeatures =
+            value.length < 100 ? "minimum 100 characaters required" : "";
+          break;
       default:
         break;
     }
@@ -121,37 +126,91 @@ class App extends Component {
                 <span className="errorMessage">{formErrors.Model}</span>
               )}
             </div>
-            <div className="email">
-              <label htmlFor="email">Email</label>
+            <div className="Variant">
+              <label htmlFor="Variant">Variant</label>
               <input
-                className={formErrors.email.length > 0 ? "error" : null}
-                placeholder="Email"
-                type="email"
-                name="email"
+                className={formErrors.Variant.length > 0 ? "error" : null}
+                placeholder="Variant"
+                type="text"
+                name="Variant"
                 noValidate
                 onChange={this.handleChange}
               />
-              {formErrors.email.length > 0 && (
-                <span className="errorMessage">{formErrors.email}</span>
+              {formErrors.Variant.length > 0 && (
+                <span className="errorMessage">{formErrors.Variant}</span>
               )}
             </div>
-            <div className="password">
-              <label htmlFor="password">Password</label>
+            <div className="Hp">
+              <label htmlFor="Hp">Hp</label>
               <input
-                className={formErrors.password.length > 0 ? "error" : null}
-                placeholder="Password"
-                type="password"
-                name="password"
+                className={formErrors.Hp.length > 0 ? "error" : null}
+                placeholder="Hp"
+                type="text"
+                name="Hp"
                 noValidate
                 onChange={this.handleChange}
               />
-              {formErrors.password.length > 0 && (
-                <span className="errorMessage">{formErrors.password}</span>
+              {formErrors.Hp.length > 0 && (
+                <span className="errorMessage">{formErrors.Hp}</span>
               )}
             </div>
-            <div className="createAccount">
-              <button type="submit">Create Account</button>
-              <small>Already Have an Account?</small>
+            <div className="Rpm">
+              <label htmlFor="Rpm">Rpm</label>
+              <input
+                className={formErrors.Rpm.length > 0 ? "error" : null}
+                placeholder="Rpm"
+                type="text"
+                name="Rpm"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.Rpm.length > 0 && (
+                <span className="errorMessage">{formErrors.Rpm}</span>
+              )}
+            </div>
+            <div className="VehicleOverview">
+              <label htmlFor="VehicleOverview">Vehicle-Overview</label>
+              <input
+                className={formErrors.VehicleOverview.length > 0 ? "error" : null}
+                placeholder="VehicleOverview"
+                type="text"
+                name="VehicleOverview"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.VehicleOverview.length > 0 && (
+                <span className="errorMessage">{formErrors.VehicleOverview}</span>
+              )}
+            </div>
+            <div className="VehicleFeatures">
+              <label htmlFor="VehicleFeatures">VehicleFeatures</label>
+              <input
+                className={formErrors.VehicleFeatures.length > 0 ? "error" : null}
+                placeholder="VehicleFeatures"
+                type="VehicleFeatures"
+                name="VehicleFeatures"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.VehicleFeatures.length > 0 && (
+                <span className="errorMessage">{formErrors.VehicleFeatures}</span>
+              )}
+            </div>
+            <form>
+                <div className="form-group multi-preview">
+                    {(this.fileArray || []).map(url => (
+                        <img src={url} alt="..." />
+                    ))}
+                </div>
+
+                <div className="form-group">
+                    <input type="file" className="form-control" onChange={this.uploadMultipleFiles} multiple />
+                </div>
+                <button type="button" className="btn btn-danger btn-block" onClick={this.uploadFiles}>Upload</button>
+            </form >
+
+            <div className="submit">
+              <button type="submit">Submit</button>
             </div>
           </form>
         </div>
