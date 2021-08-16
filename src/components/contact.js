@@ -2,6 +2,11 @@ import React, { Component } from "react";
 
 
 
+const emailRegex = RegExp(
+  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+);
+
+
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
 
@@ -23,20 +28,16 @@ class App extends Component {
     super(props);
 
     this.state = {
-      Brand: null,
-      Model: null,
-      Variant: null,
-      Hp: null,
-      Rpm: null,
-      VehicleOverview: null,
+      Name: null,
+      Mobilenumber: null,
+      email: null,
+
       VehicleFeatures: null,
       formErrors: {
-        Brand: "",
-        Model: "",
-        Variant: "",
-        Hp: "",
-        Rpm: "",
-        VehicleOverview: "",
+        Name: "",
+        Mobilenumber: "",
+        email: "",
+        Approach: "",
         VehicleFeatures: ""
       }
     };
@@ -48,11 +49,11 @@ class App extends Component {
     if (formValid(this.state)) {
       console.log(`
         --SUBMITTING--
-        Brand: ${this.state.Brand}
-        Variant: ${this.state.Brand}
-        Hp: ${this.state.Brand}
-        Rpm: ${this.state.Model}
-        Vehicle-Overview: ${this.state.Model}
+        Name: ${this.state.Name}
+        Mobilenumber: ${this.state.Mobilenumber}
+        Email: ${this.state.email}
+
+        Vehicle-Overview: ${this.state.Mobilenumber}
         VehicleFeatures: ${this.state.VehicleFeatures}
       `);
     } else {
@@ -66,19 +67,24 @@ class App extends Component {
     let formErrors = { ...this.state.formErrors };
 
     switch (name) {
-      case "Brand":
-        formErrors.Brand =
+      case "Name":
+        formErrors.Name =
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
-      case "Model":
-        formErrors.Model =
+      case "Mobilenumber":
+        formErrors.Mobilenumber =
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
+        case "email":
+          formErrors.email = emailRegex.test(value)
+            ? ""
+            : "invalid email address";
+          break;
       case "VehicleFeatures":
         formErrors.VehicleFeatures =
           value.length < 100 ? "minimum 100 characaters required" : "";
         break;
-        case "VehicleOverview":
+        case "Approach":
           formErrors.VehicleFeatures =
             value.length < 100 ? "minimum 100 characaters required" : "";
           break;
@@ -97,88 +103,60 @@ class App extends Component {
           <div className="form-wrapper">
             <h1>New Tractor Form</h1>
             <form onSubmit={this.handleSubmit} noValidate>
-              <div className="Brand">
-                <label htmlFor="Brand">Brand</label>
+              <div className="Name">
+                <label htmlFor="Name">Name</label>
                 <input
-                  className={formErrors.Brand.length > 0 ? "error" : null}
-                  placeholder="Brand"
+                  className={formErrors.Name.length > 0 ? "error" : null}
+                  placeholder="Name"
                   type="text"
-                  name="Brand"
+                  name="Name"
                   noValidate
                   onChange={this.handleChange}
                 />
-                {formErrors.Brand.length > 0 && (
-                  <span className="errorMessage">{formErrors.Brand}</span>
+                {formErrors.Name.length > 0 && (
+                  <span className="errorMessage">{formErrors.Name}</span>
                 )}
               </div>
-              <div className="Model">
-                <label htmlFor="Model">Model</label>
+              <div className="Mobilenumber">
+                <label htmlFor="Mobilenumber">Mobilenumber</label>
                 <input
-                  className={formErrors.Model.length > 0 ? "error" : null}
-                  placeholder="Model"
+                  className={formErrors.Mobilenumber.length > 0 ? "error" : null}
+                  placeholder="Mobilenumber"
                   type="text"
-                  name="Model"
+                  name="Mobilenumber"
                   noValidate
                   onChange={this.handleChange}
                 />
-                {formErrors.Model.length > 0 && (
-                  <span className="errorMessage">{formErrors.Model}</span>
+                {formErrors.Mobilenumber.length > 0 && (
+                  <span className="errorMessage">{formErrors.Mobilenumber}</span>
                 )}
               </div>
-              <div className="Variant">
-                <label htmlFor="Variant">Variant</label>
+              <div className="email">
+              <label htmlFor="email">Email</label>
+              <input
+                className={formErrors.email.length > 0 ? "error" : null}
+                placeholder="Email"
+                type="email"
+                name="email"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.email.length > 0 && (
+                <span className="errorMessage">{formErrors.email}</span>
+              )}
+            </div>
+              <div className="Approach">
+                <label htmlFor="Approach">Vehicle-Overview</label>
                 <input
-                  className={formErrors.Variant.length > 0 ? "error" : null}
-                  placeholder="Variant"
+                  className={formErrors.Approach.length > 0 ? "error" : null}
+                  placeholder="Approach"
                   type="text"
-                  name="Variant"
+                  name="Approach"
                   noValidate
                   onChange={this.handleChange}
                 />
-                {formErrors.Variant.length > 0 && (
-                  <span className="errorMessage">{formErrors.Variant}</span>
-                )}
-              </div>
-              <div className="Hp">
-                <label htmlFor="Hp">Hp</label>
-                <input
-                  className={formErrors.Hp.length > 0 ? "error" : null}
-                  placeholder="Hp"
-                  type="text"
-                  name="Hp"
-                  noValidate
-                  onChange={this.handleChange}
-                />
-                {formErrors.Hp.length > 0 && (
-                  <span className="errorMessage">{formErrors.Hp}</span>
-                )}
-              </div>
-              <div className="Rpm">
-                <label htmlFor="Rpm">Rpm</label>
-                <input
-                  className={formErrors.Rpm.length > 0 ? "error" : null}
-                  placeholder="Rpm"
-                  type="text"
-                  name="Rpm"
-                  noValidate
-                  onChange={this.handleChange}
-                />
-                {formErrors.Rpm.length > 0 && (
-                  <span className="errorMessage">{formErrors.Rpm}</span>
-                )}
-              </div>
-              <div className="VehicleOverview">
-                <label htmlFor="VehicleOverview">Vehicle-Overview</label>
-                <input
-                  className={formErrors.VehicleOverview.length > 0 ? "error" : null}
-                  placeholder="VehicleOverview"
-                  type="text"
-                  name="VehicleOverview"
-                  noValidate
-                  onChange={this.handleChange}
-                />
-                {formErrors.VehicleOverview.length > 0 && (
-                  <span className="errorMessage">{formErrors.VehicleOverview}</span>
+                {formErrors.Approach.length > 0 && (
+                  <span className="errorMessage">{formErrors.Approach}</span>
                 )}
               </div>
               <div className="VehicleFeatures">

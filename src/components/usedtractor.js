@@ -38,6 +38,9 @@ class App extends Component {
       ReceivedAmount: null ,
       OwnerName: null,
       Exchangedby: null,
+      Mobilenumber: null,
+      Procuredby: null,
+      Remarks: null,
       VehicleOverview: null,
       VehicleFeatures: null,
       formErrors: {
@@ -54,6 +57,9 @@ class App extends Component {
         ReceivedAmount: "",
         OwnerName: "",
         Exchangedby: "",
+        Mobilenumber: "",
+        Procuredby: "",
+        Remarks: "",
         VehicleOverview: "",
         VehicleFeatures: ""
       }
@@ -77,9 +83,12 @@ class App extends Component {
         otsalecommitment: ${this.state.otsalecommitment}
         ReceivedAmount: ${this.state.ReceivedAmount}
         OwnerName: ${this.state.OwnerName}
+        Mobilenumber: ${this.state.Mobilenumber}
+        Procuredby: ${this.state.Procuredby}
         Vehicle-Overview: ${this.state.VehicleOverview}
         VehicleFeatures: ${this.state.VehicleFeatures}
         Exchangedby: ${this.state.Exchangedby}
+        Remarks: ${this.state.Remarks}
       `);
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
@@ -108,6 +117,10 @@ class App extends Component {
           formErrors.VehicleFeatures =
             value.length < 100 ? "minimum 100 characaters required" : "";
           break;
+          case "Mobilenumber":
+            formErrors.Mobilenumber =
+              value.length < 10 ? "minimum 10 numbers required" : "";
+            break;
       default:
         break;
     }
@@ -305,7 +318,7 @@ class App extends Component {
                   <span className="errorMessage">{formErrors.Exchangedby}</span>
                 )}
               </div>
-              <div className="Mobilenumbernumber">
+              <div className="Mobilenumber">
                 <label htmlFor="Mobilenumber">Mobile number</label>
                 <input
                   className={formErrors.Mobilenumber.length > 0 ? "error" : null}
@@ -317,6 +330,34 @@ class App extends Component {
                 />
                 {formErrors.Mobilenumber.length > 0 && (
                   <span className="errorMessage">{formErrors.Mobilenumber}</span>
+                )}
+              </div>
+              <div className="Procuredby">
+                <label htmlFor="Procuredby">Procured by</label>
+                <input
+                  className={formErrors.Procuredby.length > 0 ? "error" : null}
+                  placeholder="Procuredby"
+                  type="text"
+                  name="Procuredby"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.Procuredby.length > 0 && (
+                  <span className="errorMessage">{formErrors.Procuredby}</span>
+                )}
+              </div>
+              <div className="Remarks">
+                <label htmlFor="Remarks">Remarks</label>
+                <input
+                  className={formErrors.Remarks.length > 0 ? "error" : null}
+                  placeholder="Remarks"
+                  type="text"
+                  name="Remarks"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.Remarks.length > 0 && (
+                  <span className="errorMessage">{formErrors.Remarks}</span>
                 )}
               </div>
               <div className="VehicleOverview">

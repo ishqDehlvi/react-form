@@ -109,10 +109,13 @@ input.error {
 .Exchangevalue
 .Exchangedby,
 .OwnerName,
+.Mobilenumber,
+.Procuredby,
 .email
 .Rpm,
 .registrationyear,
 .VehicleOverview,
+.Remarks,
 .Vehicleinfo
 .email,
 .Hp,
@@ -126,12 +129,13 @@ input.error {
 .Brand,
 .Rpm,
 .registrationyear,
-.VehicleOverview,
+.Approach,
+.Remarks,
 .Model {
   width: 49%;
 }
 
-
+.Remarks,
 .VehicleOverview {
   width: 100%;
   height: 150px;
