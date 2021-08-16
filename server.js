@@ -6,7 +6,7 @@ const path = require("path");
 const app = express();
 
 app.use(cors());
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, "build")));
 // app.use(express.static(path.join(__dirname, "./src/app-assets")));
