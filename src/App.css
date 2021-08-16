@@ -120,7 +120,8 @@ input.error {
 .Vehicleinfo
 .email,
 .Hp,
-.chassisnumber
+.chassisnumber,
+.Message,
 .VehicleFeatures {
   display: flex;
   flex-direction: column;
