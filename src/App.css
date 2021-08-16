@@ -132,6 +132,7 @@ input.error {
 .Rpm,
 .registrationyear,
 .Approach,
+.Vehicleinfo,
 .VehicleOverview
 .Remarks,
 .Model {
@@ -140,6 +141,7 @@ input.error {
 
 .Remarks,
 .Approach
+.Vehicleinfo,
 .VehicleOverview {
   width: 100%;
   height: 150px;

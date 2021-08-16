@@ -31,13 +31,15 @@ class App extends Component {
       Name: null,
       Mobilenumber: null,
       email: null,
-
+      Preposedcost: null,
+      Vehicleinfo: null,
       Message: null,
       formErrors: {
         Name: "",
         Mobilenumber: "",
         email: "",
         Vehicleinfo: "",
+        Preposedcost: "",
         Message: ""
       }
     };
@@ -52,8 +54,7 @@ class App extends Component {
         Name: ${this.state.Name}
         Mobilenumber: ${this.state.Mobilenumber}
         Email: ${this.state.email}
-
-        Vehicle-Overview: ${this.state.Mobilenumber}
+        Preposedcost: ${this.state.Preposedcost}
         Message: ${this.state.Message}
       `);
     } else {
@@ -101,7 +102,7 @@ class App extends Component {
     return (
         <div className="wrapper">
           <div className="form-wrapper">
-            <h1>New Tractor Form</h1>
+            <h1>Vehicle Enquiry Form</h1>
             <form onSubmit={this.handleSubmit} noValidate>
               <div className="Name">
                 <label htmlFor="Name">Name</label>
@@ -157,6 +158,20 @@ class App extends Component {
                 />
                 {formErrors.Vehicleinfo.length > 0 && (
                   <span className="errorMessage">{formErrors.Vehicleinfo}</span>
+                )}
+              </div>
+              <div className="Preposedcost">
+                <label htmlFor="Preposedcost">Preposedcost</label>
+                <input
+                  className={formErrors.Preposedcost.length > 0 ? "error" : null}
+                  placeholder="Preposedcost"
+                  type="text"
+                  name="Preposedcost"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.Preposedcost.length > 0 && (
+                  <span className="errorMessage">{formErrors.Preposedcost}</span>
                 )}
               </div>
               <div className="Message">
