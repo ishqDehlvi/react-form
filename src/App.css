@@ -78,6 +78,10 @@ input.error {
   margin-right: 1%;
 }
 
+.email {
+  margin-right: 1%;
+}
+
 .Model {
   margin-left: 1%;
 }
@@ -109,7 +113,8 @@ input.error {
 .OwnerName,
 .Mobilenumber,
 .Procuredby,
-.email .Rpm,
+.email,
+.Rpm,
 .registrationyear,
 .VehicleOverview,
 .Approach .Remarks,
@@ -125,6 +130,7 @@ input.error {
 
 .Brand,
 .Rpm,
+.email,
 .registrationyear,
 .Approach,
 .Vehicleinfo,
