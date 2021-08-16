@@ -28,15 +28,16 @@ class App extends Component {
       Model: null,
       Variant: null,
       Hp: null,
-      Rpm: null,
+      Registrationyear: null,
       VehicleOverview: null,
       VehicleFeatures: null,
+
       formErrors: {
         Brand: "",
         Model: "",
         Variant: "",
         Hp: "",
-        Rpm: "",
+        registrationyear: "",
         VehicleOverview: "",
         VehicleFeatures: ""
       }
@@ -154,8 +155,8 @@ class App extends Component {
                   <span className="errorMessage">{formErrors.Hp}</span>
                 )}
               </div>
-              <div className="Rpm">
-                <label htmlFor="Rpm">Rpm</label>
+              <div className="Registrationyear">
+                <label htmlFor="Registrationyear">Registrationyear</label>
                 <input
                   className={formErrors.Rpm.length > 0 ? "error" : null}
                   placeholder="Rpm"
