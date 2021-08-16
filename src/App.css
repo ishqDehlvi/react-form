@@ -7,9 +7,8 @@ medium green: #7EB09B
 light green: #A3C4BC
 */
 
-
 .wrapper {
-  height: 100vh;
+  /* height: 100vh; */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -19,7 +18,9 @@ light green: #A3C4BC
 }
 
 .form-wrapper {
-  width: 400px;
+  width: 80%;
+  margin: 53px;
+  /* width: 400px; */
   display: flex;
   flex-direction: column;
   padding: 20px 40px;
@@ -73,7 +74,6 @@ input.error {
   display: relative;
 }
 
-
 .Brand {
   margin-right: 1%;
 }
@@ -100,25 +100,20 @@ input.error {
   resize: none;
 }
 
-
 .Brand,
 .Model,
 .Variant,
 .Enginenumber,
 .RCnumber,
-.Exchangevalue
-.Exchangedby,
+.Exchangevalue .Exchangedby,
 .OwnerName,
 .Mobilenumber,
 .Procuredby,
-.email
-.Rpm,
+.email .Rpm,
 .registrationyear,
 .VehicleOverview,
-.Approach
-.Remarks,
-.Vehicleinfo
-.email,
+.Approach .Remarks,
+.Vehicleinfo .email,
 .Hp,
 .chassisnumber,
 .Message,
@@ -133,15 +128,13 @@ input.error {
 .registrationyear,
 .Approach,
 .Vehicleinfo,
-.VehicleOverview
-.Remarks,
+.VehicleOverview .Remarks,
 .Model {
   width: 49%;
 }
 
 .Remarks,
-.Approach
-.Vehicleinfo,
+.Approach .Vehicleinfo,
 .VehicleOverview {
   width: 100%;
   height: 150px;
@@ -152,7 +145,6 @@ input.error {
   background-color: #f8f8f8;
   resize: none;
 }
-
 
 .Message,
 .VehicleFeatures,
