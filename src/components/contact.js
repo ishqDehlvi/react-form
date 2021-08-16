@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 
 
 
@@ -28,16 +27,15 @@ class App extends Component {
       Model: null,
       Variant: null,
       Hp: null,
-      Registrationyear: null,
+      Rpm: null,
       VehicleOverview: null,
       VehicleFeatures: null,
-
       formErrors: {
         Brand: "",
         Model: "",
         Variant: "",
         Hp: "",
-        registrationyear: "",
+        Rpm: "",
         VehicleOverview: "",
         VehicleFeatures: ""
       }
@@ -155,8 +153,8 @@ class App extends Component {
                   <span className="errorMessage">{formErrors.Hp}</span>
                 )}
               </div>
-              <div className="Registrationyear">
-                <label htmlFor="Registrationyear">Registrationyear</label>
+              <div className="Rpm">
+                <label htmlFor="Rpm">Rpm</label>
                 <input
                   className={formErrors.Rpm.length > 0 ? "error" : null}
                   placeholder="Rpm"
@@ -220,4 +218,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default contact;

@@ -84,8 +84,11 @@ input.error {
 .Hp {
   margin-left: 1%;
 }
+.chassisnumber {
+  margin-left: 1%;
+}
 
-
+.Vehicleinfo,
 .VehicleFeatures {
   width: 100%;
   height: 150px;
@@ -101,10 +104,19 @@ input.error {
 .Brand,
 .Model,
 .Variant,
+.Enginenumber,
+.RCnumber,
+.Exchangevalue
+.Exchangedby,
+.OwnerName,
+.email
 .Rpm,
+.registrationyear,
 .VehicleOverview,
+.Vehicleinfo
 .email,
 .Hp,
+.chassisnumber
 .VehicleFeatures {
   display: flex;
   flex-direction: column;
@@ -113,6 +125,7 @@ input.error {
 
 .Brand,
 .Rpm,
+.registrationyear,
 .VehicleOverview,
 .Model {
   width: 49%;
