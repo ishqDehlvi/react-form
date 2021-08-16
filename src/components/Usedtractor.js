@@ -411,4 +411,4 @@ class App extends Component {
   }
 }
 
-export default usedtractor;
+export default Usedtractor;

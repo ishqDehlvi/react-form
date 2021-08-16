@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
+import { Route, Switch } from "react-router-dom";
+import Vehicleenquiry from "./components/Vehicleenquiry";
+import Usedtractor from "./components/Usedtractor";
+import Contact from "./components/Contact";
 
 
 

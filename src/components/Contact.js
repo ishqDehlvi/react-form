@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "./App.css";
 
 
 const emailRegex = RegExp(
@@ -31,15 +31,13 @@ class App extends Component {
       Name: null,
       Mobilenumber: null,
       email: null,
-      Preposedcost: null,
-      Vehicleinfo: null,
+
       Message: null,
       formErrors: {
         Name: "",
         Mobilenumber: "",
         email: "",
-        Vehicleinfo: "",
-        Preposedcost: "",
+        Approach: "",
         Message: ""
       }
     };
@@ -54,7 +52,8 @@ class App extends Component {
         Name: ${this.state.Name}
         Mobilenumber: ${this.state.Mobilenumber}
         Email: ${this.state.email}
-        Preposedcost: ${this.state.Preposedcost}
+
+        Vehicle-Overview: ${this.state.Mobilenumber}
         Message: ${this.state.Message}
       `);
     } else {
@@ -85,7 +84,7 @@ class App extends Component {
         formErrors.Message =
           value.length < 100 ? "minimum 100 characaters required" : "";
         break;
-        case "Vehicleinfo":
+        case "Approach":
           formErrors.Message =
             value.length < 100 ? "minimum 100 characaters required" : "";
           break;
@@ -102,7 +101,7 @@ class App extends Component {
     return (
         <div className="wrapper">
           <div className="form-wrapper">
-            <h1>Vehicle Enquiry Form</h1>
+            <h1>New Tractor Form</h1>
             <form onSubmit={this.handleSubmit} noValidate>
               <div className="Name">
                 <label htmlFor="Name">Name</label>
@@ -146,32 +145,18 @@ class App extends Component {
                 <span className="errorMessage">{formErrors.email}</span>
               )}
             </div>
-              <div className="Vehicleinfo">
-                <label htmlFor="Vehicleinfo">Vehicleinfo</label>
+              <div className="Approach">
+                <label htmlFor="Approach">Vehicle-Overview</label>
                 <input
-                  className={formErrors.Vehicleinfo.length > 0 ? "error" : null}
-                  placeholder="Vehicleinfo"
+                  className={formErrors.Approach.length > 0 ? "error" : null}
+                  placeholder="Approach"
                   type="text"
-                  name="Vehicleinfo"
+                  name="Approach"
                   noValidate
                   onChange={this.handleChange}
                 />
-                {formErrors.Vehicleinfo.length > 0 && (
-                  <span className="errorMessage">{formErrors.Vehicleinfo}</span>
-                )}
-              </div>
-              <div className="Preposedcost">
-                <label htmlFor="Preposedcost">Preposedcost</label>
-                <input
-                  className={formErrors.Preposedcost.length > 0 ? "error" : null}
-                  placeholder="Preposedcost"
-                  type="text"
-                  name="Preposedcost"
-                  noValidate
-                  onChange={this.handleChange}
-                />
-                {formErrors.Preposedcost.length > 0 && (
-                  <span className="errorMessage">{formErrors.Preposedcost}</span>
+                {formErrors.Approach.length > 0 && (
+                  <span className="errorMessage">{formErrors.Approach}</span>
                 )}
               </div>
               <div className="Message">
@@ -211,4 +196,4 @@ class App extends Component {
   }
 }
 
-export default contact;
+export default Contact;
