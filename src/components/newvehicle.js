@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./../App.css";
-import CKEditor5 from "@ckeditor/ckeditor5-react";
+// import CKEditor5 from "@ckeditor/ckeditor5-react";
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
 
