@@ -32,13 +32,13 @@ class App extends Component {
       Mobilenumber: null,
       email: null,
 
-      VehicleFeatures: null,
+      Message: null,
       formErrors: {
         Name: "",
         Mobilenumber: "",
         email: "",
         Approach: "",
-        VehicleFeatures: ""
+        Message: ""
       }
     };
   }
@@ -54,7 +54,7 @@ class App extends Component {
         Email: ${this.state.email}
 
         Vehicle-Overview: ${this.state.Mobilenumber}
-        VehicleFeatures: ${this.state.VehicleFeatures}
+        Message: ${this.state.Message}
       `);
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
@@ -80,12 +80,12 @@ class App extends Component {
             ? ""
             : "invalid email address";
           break;
-      case "VehicleFeatures":
-        formErrors.VehicleFeatures =
+      case "Message":
+        formErrors.Message =
           value.length < 100 ? "minimum 100 characaters required" : "";
         break;
         case "Approach":
-          formErrors.VehicleFeatures =
+          formErrors.Message =
             value.length < 100 ? "minimum 100 characaters required" : "";
           break;
       default:
@@ -159,18 +159,18 @@ class App extends Component {
                   <span className="errorMessage">{formErrors.Approach}</span>
                 )}
               </div>
-              <div className="VehicleFeatures">
-                <label htmlFor="VehicleFeatures">VehicleFeatures</label>
+              <div className="Message">
+                <label htmlFor="Message">Message</label>
                 <input
-                  className={formErrors.VehicleFeatures.length > 0 ? "error" : null}
-                  placeholder="VehicleFeatures"
-                  type="VehicleFeatures"
-                  name="VehicleFeatures"
+                  className={formErrors.Message.length > 0 ? "error" : null}
+                  placeholder="Message"
+                  type="Message"
+                  name="Message"
                   noValidate
                   onChange={this.handleChange}
                 />
-                {formErrors.VehicleFeatures.length > 0 && (
-                  <span className="errorMessage">{formErrors.VehicleFeatures}</span>
+                {formErrors.Message.length > 0 && (
+                  <span className="errorMessage">{formErrors.Message}</span>
                 )}
               </div>
               <form>
