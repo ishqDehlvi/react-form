@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import "./../App.css";
+import JoditEditor from "jodit-react";
 // import CKEditor5 from "@ckeditor/ckeditor5-react";
-const emailRegex = RegExp(
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-);
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
 
@@ -25,19 +23,20 @@ class App extends Component {
     super(props);
 
     this.state = {
+      content: "",
       Brand: null,
       Model: null,
-      Name: null,
-      Mobile: null,
-      email: null,
+      Variant: null,
+      Hp: null,
+      Rpm: null,
       VehicleOverview: null,
       VehicleFeatures: null,
       formErrors: {
         Brand: "",
         Model: "",
-        Name: "",
-        Mobile: "",
-        email: "",
+        Variant: "",
+        Hp: "",
+        Rpm: "",
         VehicleOverview: "",
         VehicleFeatures: "",
       },
@@ -51,9 +50,9 @@ class App extends Component {
       console.log(`
         --SUBMITTING--
         Brand: ${this.state.Brand}
-        Name: ${this.state.Brand}
-        Mobile: ${this.state.Brand}
-        email: ${this.state.Model}
+        Variant: ${this.state.Brand}
+        Hp: ${this.state.Brand}
+        Rpm: ${this.state.Model}
         Vehicle-Overview: ${this.state.Model}
         VehicleFeatures: ${this.state.VehicleFeatures}
       `);
@@ -84,11 +83,6 @@ class App extends Component {
         formErrors.VehicleFeatures =
           value.length < 100 ? "minimum 100 characaters required" : "";
         break;
-      case "email":
-        formErrors.email = emailRegex.test(value)
-          ? ""
-          : "invalid email address";
-        break;
       default:
         break;
     }
@@ -101,43 +95,61 @@ class App extends Component {
 
     return (
       <div className="wrapper">
-        <div className="form-wrapper">
-          <h1>Vehicle Enquiry Form</h1>
+        <div className="form-wrapper ">
+          <h1>New Tractor Form</h1>
           <form onSubmit={this.handleSubmit} noValidate>
             <div className="row w-100">
-              <div className="col-12 col-md-6">
+              <div className="col-12 col-md-4">
                 <div className="form-group">
-                  <label htmlFor="Name">Name</label>
+                  <label htmlFor="Variant">Variant</label>
                   <input
                     className={` form-control ${
-                      formErrors.Name.length > 0 ? "error" : null
+                      formErrors.Variant.length > 0 ? "error" : null
                     }`}
-                    placeholder="Name"
+                    placeholder="Variant"
                     type="text"
-                    name="Name"
+                    name="Variant"
                     noValidate
                     onChange={this.handleChange}
                   />
-                  {formErrors.Name.length > 0 && (
-                    <span className="errorMessage">{formErrors.Name}</span>
+                  {formErrors.Variant.length > 0 && (
+                    <span className="errorMessage">{formErrors.Variant}</span>
                   )}
                 </div>
               </div>
-              <div className="col-12 col-md-6">
+              <div className="col-12 col-md-4">
                 <div className="form-group">
-                  <label htmlFor="Mobile">Mobile</label>
+                  <label htmlFor="Model">Model</label>
                   <input
                     className={`form-control ${
-                      formErrors.Mobile.length > 0 ? "error" : null
+                      formErrors.Model.length > 0 ? "error" : null
                     }`}
-                    placeholder="Mobile"
+                    placeholder="Model"
                     type="text"
-                    name="Mobile"
+                    name="Model"
                     noValidate
                     onChange={this.handleChange}
                   />
-                  {formErrors.Mobile.length > 0 && (
-                    <span className="errorMessage">{formErrors.Mobile}</span>
+                  {formErrors.Model.length > 0 && (
+                    <span className="errorMessage">{formErrors.Model}</span>
+                  )}
+                </div>
+              </div>
+              <div className="col-12 col-md-4">
+                <div className="form-group">
+                  <label htmlFor="Brand">Brand</label>
+                  <input
+                    className={` form-control ${
+                      formErrors.Brand.length > 0 ? "error" : null
+                    }`}
+                    placeholder="Brand"
+                    type="text"
+                    name="Brand"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.Brand.length > 0 && (
+                    <span className="errorMessage">{formErrors.Brand}</span>
                   )}
                 </div>
               </div>
@@ -146,58 +158,58 @@ class App extends Component {
             <div className="row w-100">
               <div className="col-12 col-md-6">
                 <div className="form-group">
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="Hp">Hp</label>
                   <input
                     className={`form-control ${
-                      formErrors.email.length > 0 ? "error" : null
+                      formErrors.Hp.length > 0 ? "error" : null
                     }`}
-                    placeholder="Email"
-                    type="email"
-                    name="email"
+                    placeholder="Hp"
+                    type="text"
+                    name="Hp"
                     noValidate
                     onChange={this.handleChange}
                   />
-                  {formErrors.email.length > 0 && (
-                    <span className="errorMessage">{formErrors.email}</span>
+                  {formErrors.Hp.length > 0 && (
+                    <span className="errorMessage">{formErrors.Hp}</span>
                   )}
                 </div>
               </div>
               <div className="col-12 col-md-6">
                 <div className="form-group">
-                  <label htmlFor="Name">Vehicle info</label>
+                  <label htmlFor="Rpm">Rpm</label>
                   <input
-                    className={` form-control ${
-                      formErrors.Name.length > 0 ? "error" : null
+                    className={`form-control ${
+                      formErrors.Rpm.length > 0 ? "error" : null
                     }`}
-                    placeholder="vehicle info"
+                    placeholder="Rpm"
                     type="text"
-                    name="Vehicleinfo"
+                    name="Rpm"
                     noValidate
                     onChange={this.handleChange}
                   />
-                  {formErrors.Name.length > 0 && (
-                    <span className="errorMessage">{formErrors.Name}</span>
+                  {formErrors.Rpm.length > 0 && (
+                    <span className="errorMessage">{formErrors.Rpm}</span>
                   )}
                 </div>
               </div>
             </div>
-
             <div className="row w-100">
-              <div className="col-12 col-md-6">
+              <div className="col-12">
                 <div className="form-group">
-                  <label htmlFor="preposedcost">Preposed cost</label>
-                  <input
-                    className={` form-control ${
-                      formErrors.Name.length > 0 ? "error" : null
-                    }`}
-                    placeholder="Preposed cost"
-                    type="number"
-                    name="Name"
+                  <label htmlFor="VehicleOverview">Vehicle-Overview</label>
+                  <textarea
+                    className={`form-control
+                  ${formErrors.VehicleOverview.length > 0 ? "error" : null}`}
+                    placeholder="VehicleOverview"
+                    type="text"
+                    name="VehicleOverview"
                     noValidate
                     onChange={this.handleChange}
                   />
-                  {formErrors.Name.length > 0 && (
-                    <span className="errorMessage">{formErrors.Name}</span>
+                  {formErrors.VehicleOverview.length > 0 && (
+                    <span className="errorMessage">
+                      {formErrors.VehicleOverview}
+                    </span>
                   )}
                 </div>
               </div>
@@ -206,12 +218,12 @@ class App extends Component {
             <div className="row w-100">
               <div className="col-12">
                 <div className="form-group">
-                  <label htmlFor="VehicleFeatures">Message</label>
+                  <label htmlFor="VehicleFeatures">VehicleFeatures</label>
                   <textarea
                     className={`form-control ${
                       formErrors.VehicleFeatures.length > 0 ? "error" : null
                     }`}
-                    placeholder="Message"
+                    placeholder="VehicleFeatures"
                     type="VehicleFeatures"
                     name="VehicleFeatures"
                     noValidate
@@ -225,6 +237,47 @@ class App extends Component {
                 </div>
               </div>
             </div>
+            <div className="row w-100">
+              <div className="col-12 mb-3">
+                <JoditEditor
+                  // ref={editor}
+                  value={this.state.content}
+                  config={{
+                    readonly: false, // all options from https://xdsoft.net/jodit/doc/
+                  }}
+                  tabIndex={1} // tabIndex of textarea
+                  onBlur={(newContent) =>
+                    this.setState({ content: newContent })
+                  } // preferred to use only this option to update the content for performance reasons
+                  onChange={(newContent) => {}}
+                />
+              </div>
+            </div>
+
+            <form>
+              <div className="form-group multi-preview">
+                {(this.fileArray || []).map((url) => (
+                  <img src={url} alt="..." />
+                ))}
+              </div>
+
+              <div className="form-group">
+                <input
+                  type="file"
+                  className="form-control"
+                  onChange={this.uploadMultipleFiles}
+                  multiple
+                />
+              </div>
+              <button
+                type="button"
+                className="btn btn-danger btn-block"
+                onClick={this.uploadFiles}
+              >
+                Upload
+              </button>
+            </form>
+
             <div className="submit">
               <button type="submit">Submit</button>
             </div>
