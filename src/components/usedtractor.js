@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./../App.css";
-
+import JoditEditor from "jodit-react";
+// import CKEditor5 from "@ckeditor/ckeditor5-react";
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
 
@@ -22,22 +23,12 @@ class App extends Component {
     super(props);
 
     this.state = {
+      content: "",
       Brand: null,
       Model: null,
       Variant: null,
       Hp: null,
-      registrationyear: null,
-      chassisnumber: null,
-      Enginenumber: null,
-      RCnumber: null,
-      Exchangevalue: null,
-      otsalecommitment: null,
-      ReceivedAmount: null,
-      OwnerName: null,
-      Exchangedby: null,
-      Mobilenumber: null,
-      Procuredby: null,
-      Remarks: null,
+      Rpm: null,
       VehicleOverview: null,
       VehicleFeatures: null,
       formErrors: {
@@ -45,18 +36,7 @@ class App extends Component {
         Model: "",
         Variant: "",
         Hp: "",
-        registrationyear: "",
-        chassisnumber: "",
-        Enginenumber: "",
-        Exchangevalue: "",
-        otsalecommitment: "",
-        RCnumber: "",
-        ReceivedAmount: "",
-        OwnerName: "",
-        Exchangedby: "",
-        Mobilenumber: "",
-        Procuredby: "",
-        Remarks: "",
+        Rpm: "",
         VehicleOverview: "",
         VehicleFeatures: "",
       },
@@ -70,22 +50,11 @@ class App extends Component {
       console.log(`
         --SUBMITTING--
         Brand: ${this.state.Brand}
-        Variant: ${this.state.Variant}
-        Hp: ${this.state.Hp}
-        registrationyear: ${this.state.registrationyear}
-        chassisnumber: ${this.state.chassisnumber}
-        Enginenumber: ${this.state.Enginenumber}
-        RCnumber: ${this.state.RCnumber}
-        Exchangevalue: ${this.state.Exchangevalue}
-        otsalecommitment: ${this.state.otsalecommitment}
-        ReceivedAmount: ${this.state.ReceivedAmount}
-        OwnerName: ${this.state.OwnerName}
-        Mobilenumber: ${this.state.Mobilenumber}
-        Procuredby: ${this.state.Procuredby}
-        Vehicle-Overview: ${this.state.VehicleOverview}
+        Variant: ${this.state.Brand}
+        Hp: ${this.state.Brand}
+        Rpm: ${this.state.Model}
+        Vehicle-Overview: ${this.state.Model}
         VehicleFeatures: ${this.state.VehicleFeatures}
-        Exchangedby: ${this.state.Exchangedby}
-        Remarks: ${this.state.Remarks}
       `);
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
@@ -114,10 +83,6 @@ class App extends Component {
         formErrors.VehicleFeatures =
           value.length < 100 ? "minimum 100 characaters required" : "";
         break;
-      case "Mobilenumber":
-        formErrors.Mobilenumber =
-          value.length < 10 ? "minimum 10 numbers required" : "";
-        break;
       default:
         break;
     }
@@ -130,279 +95,165 @@ class App extends Component {
 
     return (
       <div className="wrapper">
-        <div className="form-wrapper">
-          <h1>Used Tractor Form</h1>
+        <div className="form-wrapper ">
+          <h1>New Tractor Form</h1>
           <form onSubmit={this.handleSubmit} noValidate>
-            <div className="Brand">
-              <label htmlFor="Brand">Brand</label>
-              <input
-                className={formErrors.Brand.length > 0 ? "error" : null}
-                placeholder="Brand"
-                type="text"
-                name="Brand"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.Brand.length > 0 && (
-                <span className="errorMessage">{formErrors.Brand}</span>
-              )}
+            <div className="row w-100">
+              <div className="col-12 col-md-4">
+                <div className="form-group">
+                  <label htmlFor="Variant">Variant</label>
+                  <input
+                    className={` form-control ${
+                      formErrors.Variant.length > 0 ? "error" : null
+                    }`}
+                    placeholder="Variant"
+                    type="text"
+                    name="Variant"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.Variant.length > 0 && (
+                    <span className="errorMessage">{formErrors.Variant}</span>
+                  )}
+                </div>
+              </div>
+              <div className="col-12 col-md-4">
+                <div className="form-group">
+                  <label htmlFor="Model">Model</label>
+                  <input
+                    className={`form-control ${
+                      formErrors.Model.length > 0 ? "error" : null
+                    }`}
+                    placeholder="Model"
+                    type="text"
+                    name="Model"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.Model.length > 0 && (
+                    <span className="errorMessage">{formErrors.Model}</span>
+                  )}
+                </div>
+              </div>
+              <div className="col-12 col-md-4">
+                <div className="form-group">
+                  <label htmlFor="Brand">Brand</label>
+                  <input
+                    className={` form-control ${
+                      formErrors.Brand.length > 0 ? "error" : null
+                    }`}
+                    placeholder="Brand"
+                    type="text"
+                    name="Brand"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.Brand.length > 0 && (
+                    <span className="errorMessage">{formErrors.Brand}</span>
+                  )}
+                </div>
+              </div>
             </div>
-            <div className="Model">
-              <label htmlFor="Model">Model</label>
-              <input
-                className={formErrors.Model.length > 0 ? "error" : null}
-                placeholder="Model"
-                type="text"
-                name="Model"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.Model.length > 0 && (
-                <span className="errorMessage">{formErrors.Model}</span>
-              )}
+
+            <div className="row w-100">
+              <div className="col-12 col-md-6">
+                <div className="form-group">
+                  <label htmlFor="Hp">Hp</label>
+                  <input
+                    className={`form-control ${
+                      formErrors.Hp.length > 0 ? "error" : null
+                    }`}
+                    placeholder="Hp"
+                    type="text"
+                    name="Hp"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.Hp.length > 0 && (
+                    <span className="errorMessage">{formErrors.Hp}</span>
+                  )}
+                </div>
+              </div>
+              <div className="col-12 col-md-6">
+                <div className="form-group">
+                  <label htmlFor="Rpm">Rpm</label>
+                  <input
+                    className={`form-control ${
+                      formErrors.Rpm.length > 0 ? "error" : null
+                    }`}
+                    placeholder="Rpm"
+                    type="text"
+                    name="Rpm"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.Rpm.length > 0 && (
+                    <span className="errorMessage">{formErrors.Rpm}</span>
+                  )}
+                </div>
+              </div>
             </div>
-            <div className="Variant">
-              <label htmlFor="Variant">Variant</label>
-              <input
-                className={formErrors.Variant.length > 0 ? "error" : null}
-                placeholder="Variant"
-                type="text"
-                name="Variant"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.Variant.length > 0 && (
-                <span className="errorMessage">{formErrors.Variant}</span>
-              )}
+            <div className="row w-100">
+              <div className="col-12">
+                <div className="form-group">
+                  <label htmlFor="VehicleOverview">Vehicle-Overview</label>
+                  <textarea
+                    className={`form-control
+                  ${formErrors.VehicleOverview.length > 0 ? "error" : null}`}
+                    placeholder="VehicleOverview"
+                    type="text"
+                    name="VehicleOverview"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.VehicleOverview.length > 0 && (
+                    <span className="errorMessage">
+                      {formErrors.VehicleOverview}
+                    </span>
+                  )}
+                </div>
+              </div>
             </div>
-            <div className="Hp">
-              <label htmlFor="Hp">Hp</label>
-              <input
-                className={formErrors.Hp.length > 0 ? "error" : null}
-                placeholder="Hp"
-                type="text"
-                name="Hp"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.Hp.length > 0 && (
-                <span className="errorMessage">{formErrors.Hp}</span>
-              )}
+
+            <div className="row w-100">
+              <div className="col-12">
+                <div className="form-group">
+                  <label htmlFor="VehicleFeatures">VehicleFeatures</label>
+                  <textarea
+                    className={`form-control ${
+                      formErrors.VehicleFeatures.length > 0 ? "error" : null
+                    }`}
+                    placeholder="VehicleFeatures"
+                    type="VehicleFeatures"
+                    name="VehicleFeatures"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.VehicleFeatures.length > 0 && (
+                    <span className="errorMessage">
+                      {formErrors.VehicleFeatures}
+                    </span>
+                  )}
+                </div>
+              </div>
             </div>
-            <div className="registrationyear">
-              <label htmlFor="registrationyear">RegistrationYear</label>
-              <input
-                className={
-                  formErrors.registrationyear.length > 0 ? "error" : null
-                }
-                placeholder="Registration Year"
-                type="number"
-                name="registrationyear"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.registrationyear.length > 0 && (
-                <span className="errorMessage">{formErrors.Hp}</span>
-              )}
+            <div className="row w-100">
+              <div className="col-12 mb-3">
+                <JoditEditor
+                  // ref={editor}
+                  value={this.state.content}
+                  config={{
+                    readonly: false, // all options from https://xdsoft.net/jodit/doc/
+                  }}
+                  tabIndex={1} // tabIndex of textarea
+                  onBlur={(newContent) =>
+                    this.setState({ content: newContent })
+                  } // preferred to use only this option to update the content for performance reasons
+                  onChange={(newContent) => {}}
+                />
+              </div>
             </div>
-            <div className="chassisnumber">
-              <label htmlFor="chassisnumber">Chassis Number</label>
-              <input
-                className={formErrors.chassisnumber.length > 0 ? "error" : null}
-                placeholder="chassisnumber"
-                type="text"
-                name="chassisnumber"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.chassisnumber.length > 0 && (
-                <span className="errorMessage">{formErrors.chassisnumber}</span>
-              )}
-            </div>
-            <div className="Enginenumber">
-              <label htmlFor="Enginenumber">Engine Number</label>
-              <input
-                className={formErrors.Enginenumber.length > 0 ? "error" : null}
-                placeholder="Enginenumber"
-                type="text"
-                name="Enginenumber"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.Enginenumber.length > 0 && (
-                <span className="errorMessage">{formErrors.Enginenumber}</span>
-              )}
-            </div>
-            <div className="RCnumber">
-              <label htmlFor="RCnumber">RC number</label>
-              <input
-                className={formErrors.RCnumber.length > 0 ? "error" : null}
-                placeholder="RCnumber"
-                type="text"
-                name="RCnumber"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.RCnumber.length > 0 && (
-                <span className="errorMessage">{formErrors.RCnumber}</span>
-              )}
-            </div>
-            <div className="Exchangevalue">
-              <label htmlFor="Exchangevalue">Exchangevalue</label>
-              <input
-                className={formErrors.Exchangevalue.length > 0 ? "error" : null}
-                placeholder="Exchangevalue"
-                type="text"
-                name="Exchangevalue"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.Exchangevalue.length > 0 && (
-                <span className="errorMessage">{formErrors.Exchangevalue}</span>
-              )}
-            </div>
-            <div className="otsalecommitment">
-              <label htmlFor="otsalecommitment">Ot Sale Commitment</label>
-              <input
-                className={
-                  formErrors.otsalecommitment.length > 0 ? "error" : null
-                }
-                placeholder="otsalecommitment"
-                type="text"
-                name="otsalecommitment"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.otsalecommitment.length > 0 && (
-                <span className="errorMessage">
-                  {formErrors.otsalecommitment}
-                </span>
-              )}
-            </div>
-            <div className="ReceivedAmount">
-              <label htmlFor="ReceivedAmount">Received Amount</label>
-              <input
-                className={
-                  formErrors.ReceivedAmount.length > 0 ? "error" : null
-                }
-                placeholder="ReceivedAmount"
-                type="text"
-                name="ReceivedAmount"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.ReceivedAmount.length > 0 && (
-                <span className="errorMessage">
-                  {formErrors.ReceivedAmount}
-                </span>
-              )}
-            </div>
-            <div className="OwnerName">
-              <label htmlFor="OwnerName">Owner Name</label>
-              <input
-                className={formErrors.OwnerName.length > 0 ? "error" : null}
-                placeholder="OwnerName"
-                type="text"
-                name="OwnerName"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.OwnerName.length > 0 && (
-                <span className="errorMessage">{formErrors.OwnerName}</span>
-              )}
-            </div>
-            <div className="Exchangedby">
-              <label htmlFor="Exchangedby">Exchanged by</label>
-              <input
-                className={formErrors.OwnerName.length > 0 ? "error" : null}
-                placeholder="Exchangedby"
-                type="text"
-                name="Exchangedby"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.Exchangedby.length > 0 && (
-                <span className="errorMessage">{formErrors.Exchangedby}</span>
-              )}
-            </div>
-            <div className="Mobilenumber">
-              <label htmlFor="Mobilenumber">Mobile number</label>
-              <input
-                className={formErrors.Mobilenumber.length > 0 ? "error" : null}
-                placeholder="Mobilenumber"
-                type="text"
-                name="Mobilenumber"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.Mobilenumber.length > 0 && (
-                <span className="errorMessage">{formErrors.Mobilenumber}</span>
-              )}
-            </div>
-            <div className="Procuredby">
-              <label htmlFor="Procuredby">Procured by</label>
-              <input
-                className={formErrors.Procuredby.length > 0 ? "error" : null}
-                placeholder="Procuredby"
-                type="text"
-                name="Procuredby"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.Procuredby.length > 0 && (
-                <span className="errorMessage">{formErrors.Procuredby}</span>
-              )}
-            </div>
-            <div className="Remarks">
-              <label htmlFor="Remarks">Remarks</label>
-              <input
-                className={formErrors.Remarks.length > 0 ? "error" : null}
-                placeholder="Remarks"
-                type="text"
-                name="Remarks"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.Remarks.length > 0 && (
-                <span className="errorMessage">{formErrors.Remarks}</span>
-              )}
-            </div>
-            <div className="VehicleOverview">
-              <label htmlFor="VehicleOverview">Vehicle-Overview</label>
-              <input
-                className={
-                  formErrors.VehicleOverview.length > 0 ? "error" : null
-                }
-                placeholder="VehicleOverview"
-                type="text"
-                name="VehicleOverview"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.VehicleOverview.length > 0 && (
-                <span className="errorMessage">
-                  {formErrors.VehicleOverview}
-                </span>
-              )}
-            </div>
-            <div className="VehicleFeatures">
-              <label htmlFor="VehicleFeatures">VehicleFeatures</label>
-              <input
-                className={
-                  formErrors.VehicleFeatures.length > 0 ? "error" : null
-                }
-                placeholder="VehicleFeatures"
-                type="VehicleFeatures"
-                name="VehicleFeatures"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.VehicleFeatures.length > 0 && (
-                <span className="errorMessage">
-                  {formErrors.VehicleFeatures}
-                </span>
-              )}
-            </div>
+
             <form>
               <div className="form-group multi-preview">
                 {(this.fileArray || []).map((url) => (
