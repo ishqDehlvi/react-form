@@ -479,7 +479,6 @@ class App extends Component {
                 />
               </div>
             </div>
-
             <form>
               <div className="form-group multi-preview">
                 {(this.fileArray || []).map((url) => (
