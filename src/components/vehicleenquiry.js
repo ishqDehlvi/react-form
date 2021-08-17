@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-
+import "./../App.css";
+// import CKEditor5 from "@ckeditor/ckeditor5-react";
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
-
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
 
@@ -25,19 +25,21 @@ class App extends Component {
     super(props);
 
     this.state = {
+      Brand: null,
+      Model: null,
       Name: null,
-      Mobilenumber: null,
+      Mobile: null,
       email: null,
-      Preposedcost: null,
-      Vehicleinfo: null,
-      Message: null,
+      VehicleOverview: null,
+      VehicleFeatures: null,
       formErrors: {
+        Brand: "",
+        Model: "",
         Name: "",
-        Mobilenumber: "",
+        Mobile: "",
         email: "",
-        Vehicleinfo: "",
-        Preposedcost: "",
-        Message: "",
+        VehicleOverview: "",
+        VehicleFeatures: "",
       },
     };
   }
@@ -48,11 +50,12 @@ class App extends Component {
     if (formValid(this.state)) {
       console.log(`
         --SUBMITTING--
-        Name: ${this.state.Name}
-        Mobilenumber: ${this.state.Mobilenumber}
-        Email: ${this.state.email}
-        Preposedcost: ${this.state.Preposedcost}
-        Message: ${this.state.Message}
+        Brand: ${this.state.Brand}
+        Name: ${this.state.Brand}
+        Mobile: ${this.state.Brand}
+        email: ${this.state.Model}
+        Vehicle-Overview: ${this.state.Model}
+        VehicleFeatures: ${this.state.VehicleFeatures}
       `);
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
@@ -65,27 +68,27 @@ class App extends Component {
     let formErrors = { ...this.state.formErrors };
 
     switch (name) {
-      case "Name":
-        formErrors.Name =
+      case "Brand":
+        formErrors.Brand =
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
-      case "Mobilenumber":
-        formErrors.Mobilenumber =
+      case "Model":
+        formErrors.Model =
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
-      case "email":
-        formErrors.email = emailRegex.test(value)
-          ? ""
-          : "invalid email address";
-        break;
-      case "Message":
-        formErrors.Message =
+      case "VehicleFeatures":
+        formErrors.VehicleFeatures =
           value.length < 100 ? "minimum 100 characaters required" : "";
         break;
-      case "Vehicleinfo":
-        formErrors.Message =
+      case "VehicleOverview":
+        formErrors.VehicleFeatures =
           value.length < 100 ? "minimum 100 characaters required" : "";
         break;
+        case "email":
+          formErrors.email = emailRegex.test(value)
+            ? ""
+            : "invalid email address";
+          break;
       default:
         break;
     }
@@ -101,114 +104,129 @@ class App extends Component {
         <div className="form-wrapper">
           <h1>Vehicle Enquiry Form</h1>
           <form onSubmit={this.handleSubmit} noValidate>
-            <div className="Name">
-              <label htmlFor="Name">Name</label>
-              <input
-                className={formErrors.Name.length > 0 ? "error" : null}
-                placeholder="Name"
-                type="text"
-                name="Name"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.Name.length > 0 && (
-                <span className="errorMessage">{formErrors.Name}</span>
-              )}
-            </div>
-            <div className="Mobilenumber">
-              <label htmlFor="Mobilenumber">Mobilenumber</label>
-              <input
-                className={formErrors.Mobilenumber.length > 0 ? "error" : null}
-                placeholder="Mobilenumber"
-                type="text"
-                name="Mobilenumber"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.Mobilenumber.length > 0 && (
-                <span className="errorMessage">{formErrors.Mobilenumber}</span>
-              )}
-            </div>
-            <div className="email">
-              <label htmlFor="email">Email</label>
-              <input
-                className={formErrors.email.length > 0 ? "error" : null}
-                placeholder="Email"
-                type="email"
-                name="email"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.email.length > 0 && (
-                <span className="errorMessage">{formErrors.email}</span>
-              )}
-            </div>
-            <div className="Vehicleinfo">
-              <label htmlFor="Vehicleinfo">Vehicleinfo</label>
-              <input
-                className={formErrors.Vehicleinfo.length > 0 ? "error" : null}
-                placeholder="Vehicleinfo"
-                type="text"
-                name="Vehicleinfo"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.Vehicleinfo.length > 0 && (
-                <span className="errorMessage">{formErrors.Vehicleinfo}</span>
-              )}
-            </div>
-            <div className="Preposedcost">
-              <label htmlFor="Preposedcost">Preposedcost</label>
-              <input
-                className={formErrors.Preposedcost.length > 0 ? "error" : null}
-                placeholder="Preposedcost"
-                type="text"
-                name="Preposedcost"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.Preposedcost.length > 0 && (
-                <span className="errorMessage">{formErrors.Preposedcost}</span>
-              )}
-            </div>
-            <div className="Message">
-              <label htmlFor="Message">Message</label>
-              <input
-                className={formErrors.Message.length > 0 ? "error" : null}
-                placeholder="Message"
-                type="Message"
-                name="Message"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.Message.length > 0 && (
-                <span className="errorMessage">{formErrors.Message}</span>
-              )}
-            </div>
-            <form>
-              <div className="form-group multi-preview">
-                {(this.fileArray || []).map((url) => (
-                  <img src={url} alt="..." />
-                ))}
+            <div className="row w-100">
+              <div className="col-12 col-md-4">
+                <div className="form-group">
+                  <label htmlFor="Name">Name</label>
+                  <input
+                    className={` form-control ${
+                      formErrors.Name.length > 0 ? "error" : null
+                    }`}
+                    placeholder="Name"
+                    type="text"
+                    name="Name"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.Name.length > 0 && (
+                    <span className="errorMessage">{formErrors.Name}</span>
+                  )}
+                </div>
               </div>
-
-              <div className="form-group">
-                <input
-                  type="file"
-                  className="form-control"
-                  onChange={this.uploadMultipleFiles}
-                  multiple
-                />
+            </div>
+            <div className="row w-100">
+              <div className="col-12 col-md-6">
+                <div className="form-group">
+                  <label htmlFor="Mobile">Mobile</label>
+                  <input
+                    className={`form-control ${
+                      formErrors.Mobile.length > 0 ? "error" : null
+                    }`}
+                    placeholder="Mobile"
+                    type="text"
+                    name="Mobile"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.Mobile.length > 0 && (
+                    <span className="errorMessage">{formErrors.Mobile}</span>
+                  )}
+                </div>
               </div>
-              <button
-                type="button"
-                className="btn btn-danger btn-block"
-                onClick={this.uploadFiles}
-              >
-                Upload
-              </button>
-            </form>
+              </div>
+              <div className="row w-100">
+              <div className="col-12 col-md-6">
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    className={`form-control ${
+                      formErrors.email.length > 0 ? "error" : null
+                    }`}
+                    placeholder="Email"
+                    type="email"
+                    name="email"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.email.length > 0 && (
+                    <span className="errorMessage">{formErrors.email}</span>
+                  )}
+                </div>
+              </div>
+              </div>
+              <div className="row w-100">
+              <div className="col-12 col-md-4">
+                <div className="form-group">
+                  <label htmlFor="Name">Vehicle info</label>
+                  <input
+                    className={` form-control ${
+                      formErrors.Name.length > 0 ? "error" : null
+                    }`}
+                    placeholder="vehicle info"
+                    type="text"
+                    name="Vehicleinfo"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.Name.length > 0 && (
+                    <span className="errorMessage">{formErrors.Name}</span>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="row w-100">
+              <div className="col-12 col-md-4">
+                <div className="form-group">
+                  <label htmlFor="preposedcost">Preposed cost</label>
+                  <input
+                    className={` form-control ${
+                      formErrors.Name.length > 0 ? "error" : null
+                    }`}
+                    placeholder="Preposed cost"
+                    type="number"
+                    name="Name"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.Name.length > 0 && (
+                    <span className="errorMessage">{formErrors.Name}</span>
+                  )}
+                </div>
+              </div>
+            </div>
 
+            <div className="row w-100">
+              <div className="col-12">
+                <div className="form-group">
+                  <label htmlFor="VehicleFeatures">Message</label>
+                  <textarea
+                    className={`form-control ${
+                      formErrors.VehicleFeatures.length > 0 ? "error" : null
+                    }`}
+                    placeholder="Message"
+                    type="VehicleFeatures"
+                    name="VehicleFeatures"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.VehicleFeatures.length > 0 && (
+                    <span className="errorMessage">
+                      {formErrors.VehicleFeatures}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
             <div className="submit">
               <button type="submit">Submit</button>
             </div>
