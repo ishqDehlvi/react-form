@@ -84,11 +84,11 @@ class App extends Component {
         formErrors.VehicleFeatures =
           value.length < 100 ? "minimum 100 characaters required" : "";
         break;
-        case "email":
-          formErrors.email = emailRegex.test(value)
-            ? ""
-            : "invalid email address";
-          break;
+      case "email":
+        formErrors.email = emailRegex.test(value)
+          ? ""
+          : "invalid email address";
+        break;
       default:
         break;
     }
@@ -105,7 +105,7 @@ class App extends Component {
           <h1>Contact</h1>
           <form onSubmit={this.handleSubmit} noValidate>
             <div className="row w-100">
-              <div className="col-12 col-md-4">
+              <div className="col-12 col-md-6">
                 <div className="form-group">
                   <label htmlFor="Name">Name</label>
                   <input
@@ -123,8 +123,6 @@ class App extends Component {
                   )}
                 </div>
               </div>
-            </div>
-            <div className="row w-100">
               <div className="col-12 col-md-6">
                 <div className="form-group">
                   <label htmlFor="Mobile">Mobile</label>
@@ -143,8 +141,9 @@ class App extends Component {
                   )}
                 </div>
               </div>
-              </div>
-              <div className="row w-100">
+            </div>
+
+            <div className="row w-100">
               <div className="col-12 col-md-6">
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
@@ -163,9 +162,9 @@ class App extends Component {
                   )}
                 </div>
               </div>
-              </div>
+            </div>
             <div className="row w-100">
-              <div className="col-12 col-md-6">
+              <div className="col-12 ">
                 <div className="form-group">
                   <label htmlFor="VehicleOverview">Approach</label>
                   <textarea

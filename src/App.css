@@ -35,6 +35,9 @@ light green: #A3C4BC
   /* ...; */
 }
 
+body {
+  background: #258ea6;
+}
 .wrapper {
   /* height: 100vh; */
   width: 100%;
