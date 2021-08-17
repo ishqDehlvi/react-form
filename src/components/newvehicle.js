@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./../App.css";
+import JoditEditor from "jodit-react";
 // import CKEditor5 from "@ckeditor/ckeditor5-react";
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
@@ -22,6 +23,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      content: "",
       Brand: null,
       Model: null,
       Variant: null,
@@ -93,7 +95,7 @@ class App extends Component {
 
     return (
       <div className="wrapper">
-        <div className="form-wrapper">
+        <div className="form-wrapper ">
           <h1>New Tractor Form</h1>
           <form onSubmit={this.handleSubmit} noValidate>
             <div className="row w-100">
@@ -235,6 +237,23 @@ class App extends Component {
                 </div>
               </div>
             </div>
+            <div className="row w-100">
+              <div className="col-12 mb-3">
+                <JoditEditor
+                  // ref={editor}
+                  value={this.state.content}
+                  config={{
+                    readonly: false, // all options from https://xdsoft.net/jodit/doc/
+                  }}
+                  tabIndex={1} // tabIndex of textarea
+                  onBlur={(newContent) =>
+                    this.setState({ content: newContent })
+                  } // preferred to use only this option to update the content for performance reasons
+                  onChange={(newContent) => {}}
+                />
+              </div>
+            </div>
+
             <form>
               <div className="form-group multi-preview">
                 {(this.fileArray || []).map((url) => (

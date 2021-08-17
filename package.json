@@ -5,6 +5,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "jodit-react": "^1.1.1",
     "path": "^0.12.7",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
